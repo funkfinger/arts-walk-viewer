@@ -1,9 +1,11 @@
 import Image from "next/image";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Link from "next/link";
 import { Carousel } from "react-responsive-carousel";
 import { ProjectData } from "../data/data";
+
 import Welcome from "./components/welcome";
-import Link from "next/link";
+
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const Index = () => (
   <div id="whole_page" className="font-serif container mx-auto px-5">
