@@ -1,16 +1,16 @@
 import { render, screen } from "@testing-library/react";
-import Home from "../pages/index";
+import Index from "../pages/index";
 import "@testing-library/jest-dom";
 
-describe("Home", () => {
+describe("Index", () => {
   it("renders a heading", () => {
-    render(<Home />);
+    render(<Index />);
     const heading = screen.getByRole("heading", { level: 1 });
     expect(heading).toBeInTheDocument();
   });
 
   it("contains welcome message", () => {
-    render(<Home />);
+    render(<Index />);
     const heading = screen.getByText(/Welcome to PCDS Arts Walk\!/i);
     expect(heading).toBeInTheDocument();
   });
