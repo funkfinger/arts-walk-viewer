@@ -3,17 +3,21 @@ import Link from "next/link";
 import { Carousel } from "react-responsive-carousel";
 import { ProjectData } from "../data/data";
 
-import Welcome from "./components/welcome";
+import Welcome from "../components/welcome";
+import Head from "../components/head";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const Index = () => (
-  <div id="whole_page" className="font-serif container mx-auto px-5">
-    <Welcome />
-    <Carousel>
+  <div id="whole_page" className="container mx-auto px-5">
+    <div className="block">
+      <Head />
+      <Welcome />
+    </div>
+    <Carousel infiniteLoop autoPlay>
       {ProjectData.map((project) => (
         <div
-          className="border-solid border-2 w-2/3 h-300 text-center rounded-md"
+          className="border-solid border-2 h-300 text-center rounded-md"
           key={project.id}
         >
           <Link

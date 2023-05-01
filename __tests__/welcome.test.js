@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Welcome from "../pages/components/welcome";
+import Welcome from "../components/welcome";
 import "@testing-library/jest-dom";
 
 describe("welcome", () => {
