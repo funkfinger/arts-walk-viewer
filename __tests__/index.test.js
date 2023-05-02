@@ -2,6 +2,8 @@ import { render, screen } from "@testing-library/react";
 import Index from "../pages/index";
 import "@testing-library/jest-dom";
 
+import { ProjectData } from "../data/data";
+
 describe("Index", () => {
   it("renders a heading", () => {
     render(<Index />);
