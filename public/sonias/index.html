@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Sketch</title>
+
+    <!-- Load the Processing.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.0/processing.min.js"></script>
+  </head>
+  <body>
+    <script type="application/processing">
+      Particle[] particles;
+      float alpha;
+
+      void setup() {
+        size(800, 600);
+        background(0);
+        setParticles();
+      }
+
+      void draw() {
+        frameRate(20);
+        alpha = map(0, 0, width, 20, 45);
+        fill(0, alpha);
+        rect(0, 0, width, height);
+
+        loadPixels();
+        for (Particle p : particles) {
+          p.move();
+        }
+        updatePixels();
+      }
+
+      void setParticles() {
+        particles = new Particle[5000];
+        for (int i = 0; i < 5000; i++) {
+          float x = random(width);
+          float y = random(height);
+          float z = map(y, 0, height, 0, 255);
+          int c = color(255, z, 200);
+          particles[i] = new Particle(x, y, c);
+        }
+      }
+
+      void mouseDragged(){
+        setParticles();
+      }
+
+      class Particle {
+        float posX, posY, incr, theta;
+        color c;
+
+        Particle(float xIn, float yIn, color cIn) {
+          posX = xIn;
+          posY = yIn;
+          c = cIn;
+        }
+
+        public void move() {
+          update();
+          wrap();
+          display();
+        }
+
+        void update() {
+          incr += 0.006;
+          theta = noise(posX * 0.008, posY * 0.002, incr) * HALF_PI;
+          posX += 1 * cos(theta);
+          posY += 1 * sin(theta);
+        }
+
+        void display() {
+          if (posX > 0 && posX < width && posY > 0 && posY < height) {
+            pixels[(int)posX + (int)posY * width] = c;
+          }
+        }
+
+        void wrap() {
+          if (posX < 0) posX = width;
+          if (posX > width) posX = 0;
+          if (posY < 0) posY = height;
+          if (posY > height) posY = 0;
+        }
+      }
+    </script>
+    <canvas> </canvas>
+  </body>
+</html>
