@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Sketch</title>
+
+    <!-- Load the Processing.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.0/processing.min.js"></script>
+  </head>
+  <body>
+    <script type="application/processing">
+      float a, b, c;
+      float R, G, B;
+
+      float xoff= 0.0;
+
+      float m;
+
+      float xpos, ypos;
+
+      float xspeed = .01;
+      float yspeed = .01;
+
+      int xdirection = 1;
+      int ydirection = 1;
+
+      float n, N;
+
+      void setup() {
+        size(800, 600);
+        background(0);
+        //noCursor();
+        noiseSeed(0);
+      }
+
+      void draw() {
+
+
+        background(0);
+
+        PVector mouse;
+        PVector center;
+
+        for (int x = 0; x <= width; x = x+50) {
+          for (int y = 0; y <= height; y = y+50) {
+
+            mouse = new PVector(mouseX, mouseY);
+            center = new PVector(x, y);
+
+            mouse.sub(center);
+            mouse.normalize();
+
+
+            float d = min(dist(x, y, xpos, ypos)*.0425, 50);
+            mouse.mult(d);
+
+            xpos = xpos + ( xspeed * xdirection );
+            ypos = ypos + ( yspeed * ydirection );
+
+            if (xpos > width || xpos < 0) {
+              xdirection *= -1;
+            }
+            if (ypos > height || ypos < 0) {
+              ydirection *= -1;
+            }
+
+            b = dist(mouseX+x, mouseY, xpos+x, ypos+y)*0.20;
+            a = dist(mouseX, mouseY+y, width/2+x, ypos+y)*0.20;
+            c = dist(mouseX+x, mouseY+y, xpos+x, height+y)*0.20;
+
+            stroke(a, b, c, 180);
+
+
+
+
+            m = (dist(mouseX, mouseY, x, y)*.015);
+            strokeWeight(m);
+
+
+            line(x, y, mouse.x + x, mouse.y + y);
+
+
+            R = dist(mouseX, mouseY+y, width+x, ypos)*0.15;
+            B = dist(mouseX+x, mouseY, width/2+x, height/2+y)*0.15;
+            G = dist(mouseX+x, mouseY, xpos+x, ypos+y)*0.15;
+
+            fill(a, b, c, 150);
+
+            strokeWeight(0);
+
+
+            rectMode(CENTER);
+            circle(mouse.x+x, mouse.y+y, m);
+            circle(x, y, m);
+          }
+        }
+      }
+    </script>
+    <canvas> </canvas>
+  </body>
+</html>

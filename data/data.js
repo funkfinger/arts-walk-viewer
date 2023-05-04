@@ -1,5 +1,11 @@
 export const ProjectData = [
   {
+    title: "Jack Moriarty- Untitled",
+    id: 1,
+    link: "/jackm/index.html",
+    img: "/jackm/thumb.png",
+  },
+  {
     title: "Sonia Singh- Untitled",
     id: 1,
     link: "/sonias/index.html",
