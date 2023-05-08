@@ -1,4 +1,5 @@
-import { Carousel } from "react-responsive-carousel";
+// import { Carousel } from "react-responsive-carousel";
+import Carousel from "react-bootstrap/Carousel";
 import { ProjectData } from "../data/data";
 
 import Welcome from "../components/welcome";
