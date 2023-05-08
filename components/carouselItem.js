@@ -1,14 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import Carousel from "react-bootstrap/Carousel";
 
 const CarouselItem = (p) => {
   const { project } = p;
   const { id, link, title, img } = project;
   return (
-    <div
-      className="border-solid border-2 h-300 text-center rounded-md"
-      key={id}
-    >
+    <Carousel.Item key={id}>
       <Link href={link} target="_blank" alt="Open Project" title="Open Project">
         <h3 className="text-lg">{title}</h3>
         <Image
@@ -19,7 +17,7 @@ const CarouselItem = (p) => {
         />
       </Link>
       <br />
-    </div>
+    </Carousel.Item>
   );
 };
 
